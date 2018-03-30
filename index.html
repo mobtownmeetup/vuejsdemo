@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Superheroes</title>
+  <link rel="stylesheet" type="text/css" href="app.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="#">Superheroes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <main role="main" class="container">
+    <div class="jumbotron">
+      <h1>Superheroes</h1>
+      <p class="lead">Let's get data from somewhere else.</p>
+      <div id="app">
+
+        <!-- Button -->
+        <button class="btn btn-primary" v-on:click="search">Search</button>
+        <hr>
+
+        <!-- Heroes list -->
+        <ul class="list-group">
+
+          <!-- When no heroes found -->
+          <div v-if="!results.length && !hero.comics.items.length">Results appear here after we click search.</div>
+
+          <!-- Heroes list items -->
+          <li class="list-group-item" v-for="result in results">
+            <a><div class="result" v-on:click="getSuperhero(result.id)">{{ result.name }}</div></a>
+          </li>
+
+          <!-- Comics -->
+          <li class="list-group-item" id="comics" v-for="item in hero.comics.items">
+            <div v-on:click="colorize(item.id)" v-bind:class="{ red: colored[item.name] }">{{item.name}}</div>
+          </li>
+        </li>
+      </ul>
+    </div>
+  </main>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="app.js"></script>
+</body>
+</html>
